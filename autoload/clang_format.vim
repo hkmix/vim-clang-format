@@ -214,10 +214,6 @@ function! clang_format#format(line1, line2) abort
     else
         let args .= ' -style=file '
     endif
-    let filename = expand('%')
-    if filename !=# ''
-        let args .= printf('-assume-filename=%s ', s:shellescape(escape(filename, " \t")))
-    endif
     let args .= g:clang_format#extra_args
     let clang_format = printf('%s %s --', s:shellescape(g:clang_format#command), args)
     let source = join(getline(1, '$'), "\n")
